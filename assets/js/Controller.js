@@ -1,4 +1,4 @@
-window.onload = () => {
+window.onload = () => {//ECMA script 6
     console.log('todo cargado');
 
     models = new Model

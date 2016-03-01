@@ -11,11 +11,25 @@
         <script src="./assets/js/process/Priority.js" charset="utf-8"></script>
         <script src="./assets/js/models/Model.js" charset="utf-8"></script>
         <script src="./assets/js/Controller.js" charset="utf-8"></script>
+        <script type='text/javascript'src='http://iio.js.org/iio.js'></script>
 
         <!--Algoritmos-->
         <script src="./assets/js/process/FCFS.js" charset="utf-8"></script>
     </head>
     <body>
-        La wea interface
+
+        <script type='text/javascript'>
+
+        // app is an App object
+        HelloWorld = function( app ){
+
+        	// create and add a text object
+        	app.create( app.center, 'Hello World' );
+
+        }
+
+        // start the app fullscreen
+        iio.start( HelloWorld );
+        </script>
     </body>
 </html>

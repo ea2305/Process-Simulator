@@ -33,13 +33,13 @@ Queue.prototype.pushTick = function(pcb){
 };
 //ordena desendente por prioridad
 Queue.prototype.sortPriority = function(){
-  this.queue.sort(funtion(a, b){//ordena
+  this.queue.sort(function(a, b){//ordena
     return(b.priority - a.priority);//decendente
   })
 };
 //ordena desendente por tick
 Queue.prototype.sortTick = function(){
-  this.queue.sort(funtion(a, b){//ordena
+  this.queue.sort(function(a, b){//ordena
     return(b.ticks - a.ticks);//decendente
   })
 };

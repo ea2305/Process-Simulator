@@ -2,7 +2,9 @@ window.onload = () => {
     console.log('todo cargado');
 
     models = new Model
-    models.start()
-    models.exec()
+    models.setOption(1) //Seleccionamos el tipo de algoritmo, manual :c
+
+    models.start()// inicio de modelo
+    models.exec() // Ejecucion de algoritmo seleccionado
 
 }

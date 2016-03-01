@@ -5,8 +5,10 @@
 */
 function FCFS (Model){
     this.Model = Model
-    this.complete = []
-    this.actully = 0
+    this.queue = new Queue();
+    this.queue.priority = true;
+    this.process = new Process(this.queue);
+    this.complete = new Queue();
 }
 
 FCFS.prototype.start = function startProcess(){

@@ -3,7 +3,5 @@ window.onload = () => {
 
     models = new Model
     models.setOption(1) //Seleccionamos el tipo de algoritmo, manual :c
-
-    models.start()// inicio de modelo
     models.exec() // Ejecucion de algoritmo seleccionado
 }

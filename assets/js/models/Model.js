@@ -15,6 +15,7 @@ Model.prototype.getTime = function () {
     return this.Time
 }
 
+/*
 Model.prototype.start = function(){
     count = 0//contador de procesos
 
@@ -30,6 +31,7 @@ Model.prototype.start = function(){
         console.log(queueProc.queue);
     },this.Time)
 }
+*/
 
 Model.prototype.exec = function(){
 //Harcodeado no hagan caso de esto :v
@@ -47,7 +49,7 @@ Model.prototype.exec = function(){
             //A = new RR(this);
             break;
         case 5:
-            //A = new Priority(this);
+            A = new Priority(this);
             break;
         case 6:
             //A = new MultiLevel(this);

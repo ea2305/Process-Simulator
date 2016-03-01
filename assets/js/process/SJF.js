@@ -1,14 +1,10 @@
-/*
-    Implementacion de algorimo FCFS para simulacion de procesos
-    author : Elihu A. Cruz Albores
-    version : 1.0.1
-*/
-function FCFS(){
+function SJF(){
     this.queue = new Queue();
+    this.queue.ticks = true;
     this.process = new Process(this.queue);
     this.complete = new Queue();
 }
-  FCFS.prototype.start = function(){
+  SJF.prototype.start = function(){
     this.process.start();
     var pcb = this.queue.shift();
     var threadPriority = setInterval(() => {

@@ -40,7 +40,7 @@ Model.prototype.exec = function(){
             A = new FCFS(this);
             break;
         case 2:
-            //A = new SJF(this);
+            A = new SJF(this);
             break;
         case 3:
             //A = new SRTF(this);

@@ -7,16 +7,16 @@ function Priority(){
   Priority.prototype.start = function(){
     this.process.start();
     var pcb = this.queue.shift();
-    console.log(pcb);
     var threadPriority = setInterval(() => {
-      pcb = this.queue.shift();
-      console.log(pcb);
-      /*if(pcb.ticks > 0){
+      if(pcb === undefined) pcb = this.queue.shift();
+      else if(pcb.ticks > 0){
         pcb.work();
         this.queue.wait();
       }else{
         this.complete.push(pcb);
         pcb = this.queue.shift();
-      }*/
+      }
+      console.log(this.queue);
+      console.log(pcb);
     },5000);
   };

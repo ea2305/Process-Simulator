@@ -10,6 +10,11 @@ Model.prototype.setOption = function(option){
     this.option = option;
 }
 
+
+Model.prototype.getTime = function () {
+    return this.Time
+}
+
 Model.prototype.start = function(){
     count = 0//contador de procesos
 

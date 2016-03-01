@@ -3,7 +3,8 @@
     author : Elihu A. Cruz Albores
     version : 1.0.1
 */
-function FCFS (){
+function FCFS (Model){
+    this.Model = Model
     this.complete = []
     this.actully = 0
 }
@@ -11,11 +12,12 @@ function FCFS (){
 FCFS.prototype.start = function startProcess(){
     var timer = setInterval((e) => {
         this.check()
-    },5000)
+    },this.Model.getTime())
 }
 
 //Verificamos el esetado actual de la cola
 FCFS.prototype.check = function checkOut(){
+
     console.log(this.complete);
     queueProc.wait()
     if (queueProc.queue[0].ticks > 0){

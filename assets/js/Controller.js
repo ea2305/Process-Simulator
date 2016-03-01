@@ -6,5 +6,4 @@ window.onload = () => {
 
     models.start()// inicio de modelo
     models.exec() // Ejecucion de algoritmo seleccionado
-
 }

@@ -8,7 +8,7 @@ function FCFS(){
     this.process = new Process(this.queue);
     this.complete = new Queue();
 }
-  Priority.prototype.start = function(){
+  FCFS.prototype.start = function(){
     this.process.start();
     var pcb = this.queue.shift();
     var threadPriority = setInterval(() => {

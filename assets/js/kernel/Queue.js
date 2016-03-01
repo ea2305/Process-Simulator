@@ -28,12 +28,12 @@ function Queue() {
   };
   Queue.prototype.sortPriority = function(){
     this.queue.sort(function(a, b){
-      return(b.priority - a.priority);
+      return(a.priority - b.priority);
     });
   };
   Queue.prototype.sortTicks = function(){
     this.queue.sort(function(a, b){
-      return(b.ticks - a.ticks);
+      return(a.ticks - b.ticks);
     });
   };
   Queue.prototype.shift = function(){

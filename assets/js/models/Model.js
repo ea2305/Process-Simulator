@@ -1,11 +1,16 @@
 function Model(){
 
     this.modeProcess = 1;//Selecciona el tipo de algoritmo
+    this.option = 1;
     this.Time = 5000;
 
 }
 
-Model.prototype.start = function startGeneration(){
+Model.prototype.setOption = function(option){
+    this.option = option;
+}
+
+Model.prototype.start = function(){
     count = 0//contador de procesos
 
     makeProcess = new Procesos //instancia de generador de procesos
@@ -21,9 +26,9 @@ Model.prototype.start = function startGeneration(){
     },this.Time)
 }
 
-Model.prototype.exec = function execAlgoritm(option){
+Model.prototype.exec = function(){
 //Harcodeado no hagan caso de esto :v
-    switch (option) {
+    switch (this.option) {
         case 1:
             A = new FCFS(this);
             break;

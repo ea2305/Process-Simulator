@@ -1,10 +1,16 @@
 function Model(){
 
     this.modeProcess = 1;//Selecciona el tipo de algoritmo
+    this.option = 1;
+    this.Time = 5000;
 
 }
 
-Model.prototype.start = function startGeneration(){
+Model.prototype.setOption = function(option){
+    this.option = option;
+}
+
+Model.prototype.start = function(){
     count = 0//contador de procesos
 
     makeProcess = new Procesos //instancia de generador de procesos
@@ -17,10 +23,33 @@ Model.prototype.start = function startGeneration(){
         }
 
         console.log(queueProc.queue);
-    },5000)
+    },this.Time)
 }
 
-Model.prototype.exec = function execAlgoritm(){
-    a = new FCFS
-    a.start()
+Model.prototype.exec = function(){
+//Harcodeado no hagan caso de esto :v
+    switch (this.option) {
+        case 1:
+            A = new FCFS(this);
+            break;
+        case 2:
+            //A = new SJF(this);
+            break;
+        case 3:
+            //A = new SRTF(this);
+            break;
+        case 4:
+            //A = new RR(this);
+            break;
+        case 5:
+            //A = new Priority(this);
+            break;
+        case 6:
+            //A = new MultiLevel(this);
+            break;
+        default:
+            A = new FCFS(this);
+    }
+    //Lanzamos la el algoritmo
+    A.start()
 }

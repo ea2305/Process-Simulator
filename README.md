@@ -1,5 +1,16 @@
 # Simulator Process
 
+## Algoritms
+
+```
+ FCFS
+ SJF
+ SRTF
+ RR
+ Priority
+ MultiLevel
+```
+
 ## Requirements
 
 * none

@@ -11,7 +11,7 @@
         <!--Options-->
         <script src="./assets/js/models/Model.js" charset="utf-8"></script>
         <script src="./assets/js/Controller.js" charset="utf-8"></script>
-        <script src='http://iio.js.org/iio.js'></script>
+        <script src='./assets/js/iio/build/iio.min.js'></script>
 
         <!--Algoritmos-->
         <script src="./assets/js/process/FCFS.js" charset="utf-8"></script>
@@ -21,10 +21,20 @@
         <script src="./assets/js/process/Priority.js" charset="utf-8"></script>
         <script src="./assets/js/process/SchedulingAlgorithm.js" charset="utf-8"></script>
 
+        <!--Interface-->
+        <script src="./assets/js/views/MasterView.js" charset="utf-8"></script>
+
     </head>
     <body>
         <button id="button-start" type="Start" name="start">Start</button>
         <button id="button-stop" type="Stop" name="stop">Stop</button>
-        <script src="./assets/js/views/MasterView.js" charset="utf-8"></script>
+        <section id="options">
+            <button id="option_1" class="option" type="FCFS" name="start">FCFS</button>
+            <button id="option_2" class="option" type="SJF" name="start">SJF</button>
+            <button id="option_3" class="option" type="SRTF" name="start">SRTF</button>
+            <button id="option_4" class="option" type="RR" name="start">RR</button>
+            <button id="option_5" class="option" type="Prioridad" name="start">Prioridad</button>
+            <button id="option_6" class="option" type="Multi" name="start">Multi</button>
+        </section>
     </body>
 </html>

@@ -1,6 +1,12 @@
+/*Eliminate initial border*/
+
+body{
+    margin: 0px;
+}
+
 button{
     /*Basic rules*/
-    width: 20vw;
+    width: 15vw;
     height: 10vh;
     position: absolute;
     z-index: 100;
@@ -11,6 +17,18 @@ button{
     border-radius: 5px;
     color : white;
     font-size: 30px;
+}
+
+.option{
+    width: 8vw;
+    height: 5vh;
+    bottom: 30px;
+    font-size: 20px;
+}
+
+.option:hover{
+    border-color: lightyellow;
+    color: yellow;
 }
 
 #button-start{
@@ -25,7 +43,7 @@ button{
 }
 
 #button-stop{
-    left: 22vw;
+    left: 17vw;
     bottom: 10px;
 }
 
@@ -33,4 +51,28 @@ button{
     transition: all .5s;
     border: 2px cyan solid;
     color: cyan;
+}
+
+#option_1{
+    left: 35vw;
+}
+
+#option_2{
+    left: 45vw;
+}
+
+#option_3{
+    left: 55vw;
+}
+
+#option_4{
+    left: 65vw;
+}
+
+#option_5{
+    left: 75vw;
+}
+
+#option_6{
+    left: 85vw;
 }

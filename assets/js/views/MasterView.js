@@ -101,6 +101,7 @@ window.onload = ()=>{
             ))
         }
     }
+    
 
 
     // start the app fullscreen

@@ -1,21 +1,15 @@
 function SRTF(){
     this.queue = new Queue();
-    this.queue.ticks = true;
-    this.process = new Process(this.queue);
+    this.process = new Process();
     this.complete = new Queue();
+    this.srtf = new SchedulingAlgorithm();
 }
   SRTF.prototype.start = function(){
+    this.queue.ticks = true;
+    this.process.queue = this.queue;
+    this.srtf.isExpulsive = true;
+    this.srtf.queue = this.process.queue;
+    this.srtf.complete = this.complete;
     this.process.start();
-    var pcb;
-    var threadPriority = setInterval(() => {
-      pcb = this.queue.shift();
-      if(pcb !== undefined){
-        pcb.work();
-        this.queue.wait();
-        if(pcb.ticks === 0) this.complete.push(pcb);
-        else this.queue.push(pcb);
-      }
-      console.log(this.queue);
-      console.log(pcb);
-    },5000);
+    this.srtf.start();
   };

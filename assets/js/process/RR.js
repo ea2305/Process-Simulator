@@ -1,25 +1,15 @@
 function RR(){
     this.queue = new Queue();
-    this.process = new Process(this.queue);
+    this.process = new Process();
     this.complete = new Queue();
-    this.quatum = 2;
+    this.rr = new SchedulingAlgorithm();
 }
   RR.prototype.start = function(){
+    this.process.queue = this.queue;
+    this.rr.isExpulsive = true;
+    this.rr.quatum = 2;
+    this.rr.queue = this.process.queue;
+    this.rr.complete = this.complete;
     this.process.start();
-    var pcb = this.queue.shift();
-    var cont = 0;
-    var threadPriority = setInterval(() => {
-      if(pcb === undefined) pcb = this.queue.shift();
-      else if(pcb.ticks > 0 && cont < this.quatum){
-        pcb.work();
-        this.queue.wait();
-        cont++;
-      }else{
-        this.complete.push(pcb);
-        pcb = this.queue.shift();
-        cont = 0;
-      }
-      console.log(this.queue);
-      console.log(pcb);
-    },5000);
+    this.rr.start();
   };

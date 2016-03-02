@@ -1,0 +1,36 @@
+button{
+    /*Basic rules*/
+    width: 20vw;
+    height: 10vh;
+    position: absolute;
+    z-index: 100;
+
+    /*Style Main*/
+    background: black;
+    border: 2px white solid;
+    border-radius: 5px;
+    color : white;
+    font-size: 30px;
+}
+
+#button-start{
+    left: 1vw;
+    bottom: 10px;
+}
+
+#button-start:hover{
+    transition: all .5s;
+    border: 2px red solid;
+    color: red;
+}
+
+#button-stop{
+    left: 22vw;
+    bottom: 10px;
+}
+
+#button-stop:hover{
+    transition: all .5s;
+    border: 2px cyan solid;
+    color: cyan;
+}

@@ -1,4 +1,4 @@
-window.onload = ()=>{
+window.onload = () => {
 
     myController = new Controller; //iniciamos el controlador
 
@@ -112,7 +112,22 @@ window.onload = ()=>{
         controller = element
     }
 
+    function selectAlgoritm(event){
+        var id = event.toElement.id;
+        var option = id.split("").pop();
+        console.log(option);
+
+        myController.selectMode(option);
+    }
+
     //Handlers
     document.getElementById('button-start').addEventListener('click',changeColor)
     document.getElementById('button-stop').addEventListener('click',changeColor)
+    //Botones de Algoritmos
+    document.getElementById('option_1').addEventListener('click',selectAlgoritm)
+    document.getElementById('option_2').addEventListener('click',selectAlgoritm)
+    document.getElementById('option_3').addEventListener('click',selectAlgoritm)
+    document.getElementById('option_4').addEventListener('click',selectAlgoritm)
+    document.getElementById('option_5').addEventListener('click',selectAlgoritm)
+    document.getElementById('option_6').addEventListener('click',selectAlgoritm)
 }

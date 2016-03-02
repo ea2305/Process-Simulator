@@ -1,3 +1,4 @@
+
 window.onload = () => {
 
     myController = new Controller; //iniciamos el controlador
@@ -6,7 +7,8 @@ window.onload = () => {
 
     //Cambia el color del boton al ser seleccionado
     var changeColor = (e)=>{
-        var element = e.toElement.id //Obtenemos generador del evento
+        var element = $(e.target)[0].id; //Obtenemos generador del evento
+        console.log(element);
         btn_state = false;
         btn_state = (element == "button-start") ? true : false; //Seteamos valores
         setColor(element,btn_state) //Colocamos estado de seleccionado
@@ -101,7 +103,7 @@ window.onload = () => {
             ))
         }
     }
-    
+
 
 
     // start the app fullscreen
@@ -114,7 +116,7 @@ window.onload = () => {
     }
 
     function selectAlgoritm(event){
-        var id = event.toElement.id;
+        var id = $(event.target)[0].id;
         var option = id.split("").pop();
         console.log(option);
 

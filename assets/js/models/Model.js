@@ -3,11 +3,9 @@
 */
 
 function Model(){
-
     this.modeProcess = 1;//Selecciona el tipo de algoritmo
     this.option = 1;
     this.Time = 5000;
-
 }
 
 Model.prototype.setOption = function(option){

@@ -5,22 +5,14 @@
 */
 function FCFS(){
     this.queue = new Queue();
-    this.process = new Process(this.queue);
+    this.process = new Process();
     this.complete = new Queue();
+    this.fcfs = new SchedulingAlgorithm();
 }
   FCFS.prototype.start = function(){
+    this.process.queue = this.queue;
+    this.fcfs.queue = this.process.queue;
+    this.fcfs.complete = this.complete;
     this.process.start();
-    var pcb = this.queue.shift();
-    var threadPriority = setInterval(() => {
-      if(pcb === undefined) pcb = this.queue.shift();
-      else if(pcb.ticks > 0){
-        pcb.work();
-        this.queue.wait();
-      }else{
-        this.complete.push(pcb);
-        pcb = this.queue.shift();
-      }
-      console.log(this.queue);
-      console.log(pcb);
-    },5000);
+    this.fcfs.start();
   };

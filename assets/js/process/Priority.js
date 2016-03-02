@@ -1,22 +1,14 @@
 function Priority(){
     this.queue = new Queue();
-    this.queue.priority = true;
-    this.process = new Process(this.queue);
+    this.process = new Process();
     this.complete = new Queue();
+    this.priority = new SchedulingAlgorithm();
 }
   Priority.prototype.start = function(){
+    this.queue.priority = true;
+    this.process.queue = this.queue;
+    this.priority.queue = this.process.queue;
+    this.priority.complete = this.complete;
     this.process.start();
-    var pcb = this.queue.shift();
-    var threadPriority = setInterval(() => {
-      if(pcb === undefined) pcb = this.queue.shift();
-      else if(pcb.ticks > 0){
-        pcb.work();
-        this.queue.wait();
-      }else{
-        this.complete.push(pcb);
-        pcb = this.queue.shift();
-      }
-      console.log(this.queue);
-      console.log(pcb);
-    },5000);
+    this.priority.start();
   };

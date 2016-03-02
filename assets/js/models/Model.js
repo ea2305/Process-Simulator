@@ -43,10 +43,10 @@ Model.prototype.exec = function(){
             A = new SJF(this);
             break;
         case 3:
-            //A = new SRTF(this);
+            A = new SRTF(this);
             break;
         case 4:
-            //A = new RR(this);
+            A = new RR(this);
             break;
         case 5:
             A = new Priority(this);

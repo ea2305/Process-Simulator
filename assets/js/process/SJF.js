@@ -1,22 +1,14 @@
 function SJF(){
     this.queue = new Queue();
-    this.queue.ticks = true;
-    this.process = new Process(this.queue);
+    this.process = new Process();
     this.complete = new Queue();
+    this.sjf = new SchedulingAlgorithm();
 }
   SJF.prototype.start = function(){
+    this.queue.ticks = true;
+    this.process.queue = this.queue;
+    this.sjf.queue = this.process.queue;
+    this.sjf.complete = this.complete;
     this.process.start();
-    var pcb = this.queue.shift();
-    var threadPriority = setInterval(() => {
-      if(pcb === undefined) pcb = this.queue.shift();
-      else if(pcb.ticks > 0){
-        pcb.work();
-        this.queue.wait();
-      }else{
-        this.complete.push(pcb);
-        pcb = this.queue.shift();
-      }
-      console.log(this.queue);
-      console.log(pcb);
-    },5000);
+    this.sjf.start();
   };

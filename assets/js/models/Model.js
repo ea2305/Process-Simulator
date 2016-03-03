@@ -3,7 +3,8 @@
 */
 
 function Model(){
-    this.modeProcess = 1;//Selecciona el tipo de algoritmo
+    //this.modeProcess = 1;//Selecciona el tipo de algoritmo
+    this.method = null;
     this.option = 1;
     this.Time = 5000;
 }
@@ -12,50 +13,47 @@ Model.prototype.setOption = function(option){
     this.option = option;
 }
 
+Model.prototype.getMethod = function(){
+    return this.method;
+}
+
 //Retorna el tiempo de espera para la simulacion
 Model.prototype.getTime = function () {
     return this.Time
 }
 
 Model.prototype.exec = function(){
-
     //Inicio de la simulacion
-
     //Seleccion del algoritmo
         switch (this.option) {
-        case 1:
-        console.log(" Va a cargar FSFC");
-
-            A = new FCFS(this.option);
+        case '1':
+            console.log(" Va a cargar FSFC");
+            this.method = new FCFS(this);
             break;
-        case 2:
-        console.log(" Va a cargar SJF");
-
-            A = new SJF(this.option);
+        case '2':
+            console.log(" Va a cargar SJF");
+            this.method = new SJF(this);
             break;
-        case 3:
-        console.log(" Va a cargar SRTF");
-
-            A = new SRTF(this.option);
+        case '3':
+            console.log(" Va a cargar SRTF");
+            this.method = new SRTF(this);
             break;
-        case 4:
-        console.log(" Va a cargar RR");
-
-            A = new RR(this.option);
+        case '4':
+            console.log(" Va a cargar RR");
+            this.method = new RR(this);
             break;
-        case 5:
-        console.log(" Va a cargar Pryority");
-
-            A = new Priority(this.option);
+        case '5':
+            console.log(" Va a cargar Pryority");
+            this.method = new Priority(this);
             break;
-        case 6:
-        console.log(" Va a cargar multilevel");
-            A = new Multilevel();
+        case '6':
+            console.log(" Va a cargar multilevel");
+            this.method = new Multilevel(this);
             break;
         default:
-          console.log("Esta cargando el default");
-            A = new FCFS(this);
+            console.log("Esta cargando el default");
+            this.method = new FCFS(this);
     }
     //Lanzamos la el algoritmo
-    A.start()
+    this.method.start()
 }

@@ -1,9 +1,6 @@
 function Controller(){
-    //
-    //this.model = null;
     this.model = new Model();
 }
-//view = new MasterView()// si llevara a generarse como objeto
 
 Controller.prototype.areModel = function(){
     if (this.model == null){
@@ -13,11 +10,10 @@ Controller.prototype.areModel = function(){
 }
 
 Controller.prototype.selectMode = function(mode){
-    //mode = mode || 1
-    this.model.setOption(6); //Seleccionamos el tipo de algoritmo, manual :c
+    mode = mode || 1
+    this.model.setOption(mode);//Seleccionar por boton
 }
 
 Controller.prototype.startAll = function() {
-
     this.model.exec(); // Ejecucion de algoritmo seleccionado
 }

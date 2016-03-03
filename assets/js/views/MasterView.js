@@ -7,9 +7,10 @@ window.onload = () => {
 
     //Cambia el color del boton al ser seleccionado
     var changeColor = (e)=>{
-        var element = $(e.target)[0].id; //Obtenemos generador del evento
-        console.log(element);
-        btn_state = false;
+        //Obtenemos generador del evento
+        var element = $(e)[0].target.id
+
+        btn_state = false;//Reiniciamos el valor
         btn_state = (element == "button-start") ? true : false; //Seteamos valores
         setColor(element,btn_state) //Colocamos estado de seleccionado
         if (btn_state) {
@@ -21,10 +22,25 @@ window.onload = () => {
 
     var setColor = (element,state)=>{
         var clean = (state)? ["red","button-stop"] : ["cyan","button-start"];
-        document.getElementById(clean[1]).style.color = "white";
-        document.getElementById(clean[1]).style.borderColor = "white";
-        document.getElementById(element).style.color = clean[0];
-        document.getElementById(element).style.borderColor = clean[0];
+        //Limpiamos valores
+        $("#" + clean[1]).style("color","white")
+        $("#" + clean[1]).style("border-color","white")
+        //Cambio de color al seleccionar
+        $("#" + element).style("color",clean[0])
+        $("#" + element).style("border-color",clean[0])
+    }
+
+    //Set controler
+    function setViewController(element){
+        console.log("controller seteado");
+        controller = element
+    }
+
+    function selectAlgoritm(event){
+        //Obtenemos padre del evento, y obtenemos el indice del algoritmo
+        var option = $(event.target)[0].id.split("").pop()
+        //Enviamos valores
+        myController.selectMode(option)
     }
 
     var Box = function(app,settings){
@@ -104,33 +120,18 @@ window.onload = () => {
         }
     }
 
-
-
     // start the app fullscreen
     iio.start( Box );
 
-    //Set controler
-    function setViewController(element){
-        console.log("controller seteado");
-        controller = element
-    }
-
-    function selectAlgoritm(event){
-        var id = $(event.target)[0].id;
-        var option = id.split("").pop();
-        console.log(option);
-
-        myController.selectMode(option);
-    }
-
     //Handlers
-    document.getElementById('button-start').addEventListener('click',changeColor)
-    document.getElementById('button-stop').addEventListener('click',changeColor)
+    $('#button-start').click(changeColor)
+    $('#button-stop').click(changeColor)
+
     //Botones de Algoritmos
-    document.getElementById('option_1').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_2').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_3').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_4').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_5').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_6').addEventListener('click',selectAlgoritm)
+    $('#option_1').click(selectAlgoritm)
+    $('#option_2').click(selectAlgoritm)
+    $('#option_3').click(selectAlgoritm)
+    $('#option_4').click(selectAlgoritm)
+    $('#option_5').click(selectAlgoritm)
+    $('#option_6').click(selectAlgoritm)
 }

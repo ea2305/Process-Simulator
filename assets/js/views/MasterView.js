@@ -1,19 +1,22 @@
 
 window.onload = () => {
 
-    myController = new Controller; //iniciamos el controlador
-
-    var btn_state = null;//Estado del boton
+    //iniciamos el controlador
+    myController = new Controller;
+    //Estado del boton
+    var btn_state = null;
 
     //Cambia el color del boton al ser seleccionado
     var changeColor = (e)=>{
-        var element = $(e.target)[0].id; //Obtenemos generador del evento
-        console.log(element);
-        btn_state = false;
+        //Obtenemos generador del evento
+        var element = $(e)[0].target.id
+
+        btn_state = false;//Reiniciamos el valor
         btn_state = (element == "button-start") ? true : false; //Seteamos valores
         setColor(element,btn_state) //Colocamos estado de seleccionado
         if (btn_state) {
             myController.startAll();
+            console.log(myController.model.method.complete);
         } else {
             //stopSimulation();
         }
@@ -21,93 +24,13 @@ window.onload = () => {
 
     var setColor = (element,state)=>{
         var clean = (state)? ["red","button-stop"] : ["cyan","button-start"];
-        document.getElementById(clean[1]).style.color = "white";
-        document.getElementById(clean[1]).style.borderColor = "white";
-        document.getElementById(element).style.color = clean[0];
-        document.getElementById(element).style.borderColor = clean[0];
+        //Limpiamos valores
+        $("#" + clean[1]).css("color","white")
+        $("#" + clean[1]).css("border-color","white")
+        //Cambio de color al seleccionar
+        $("#" + element).css("color",clean[0])
+        $("#" + element).css("border-color",clean[0])
     }
-
-    var Box = function(app,settings){
-
-        var center = app.center
-        var increment = 80;
-
-        console.log(center);
-        app.set({color : 'black'})
-
-        //Fondo blanco
-        app.add( new iio.Quad(
-            {
-                pos : [center.x,center.y - 300],
-                width: 80,
-                color : 'gray'
-            }
-        ))
-        //Borde
-        app.add( new iio.Quad(
-            {
-                pos : [center.x,center.y - 300],
-                width: 60,
-                color : 'white'
-            }
-        ))
-
-        //Cola de preparados
-        //Fondo rojo
-        app.add( new iio.Quad(
-            {
-                pos : [70,center.y - 300],
-                width: 100,
-                height : 600,
-                color : 'red'
-            }
-        ))
-        //fondo negro tuberia
-        app.add( new iio.Quad(
-            {
-                pos : [70,center.y - 300],
-                width: 80,
-                height : 600,
-                color : 'black'
-            }
-        ))
-
-        //Cola de preparados
-        //Fondo azul
-        app.add( new iio.Quad(
-            {
-                pos : [1200,center.y - 300],
-                width: 100,
-                height : 600,
-                color : 'blue'
-            }
-        ))
-        //fondo negro tuberia
-        app.add( new iio.Quad(
-            {
-                pos : [1200,center.y - 300],
-                width: 80,
-                height : 600,
-                color : 'black'
-            }
-        ))
-
-        //Generador de procesos :v
-        for (var i = 0; i < 5; i++) {
-            app.add( new iio.Ellipse(
-                {
-                    pos : [70,(increment * i)],
-                    radius : 30,
-                    color : 'white'
-                }
-            ))
-        }
-    }
-
-
-
-    // start the app fullscreen
-    iio.start( Box );
 
     //Set controler
     function setViewController(element){
@@ -116,21 +39,119 @@ window.onload = () => {
     }
 
     function selectAlgoritm(event){
-        var id = $(event.target)[0].id;
-        var option = id.split("").pop();
-        console.log(option);
-
-        myController.selectMode(option);
+        console.log(event);
+        //Obtenemos padre del evento, y obtenemos el indice del algoritmo
+        var option = event.target.id.split("").pop()
+        //Enviamos valores
+        myController.selectMode(option)
     }
 
+
+/*
+    Modelado de la interfaz en cavas.
+    Principales metodos y objetos.
+    * Configuracion de tuberias
+    * Configuracion de Pelotas
+    * Configuracion de Caja
+*/
+    //Medidas genericas para tuberias
+    var pipeW = 60
+    var pipeH = 200
+    var pipeL = 10
+
+    //Medidas genericas para cajas
+    var rectW = 70
+    var rectH = 70
+    var rectL = 10
+
+    //Medidas para pelota : proceso
+    var ballR = 30
+
+    //Generador de tuberias
+    var pipeConf = function(color,position){
+        return (
+            [
+                {//Objeto maestro
+                    pos : position,
+                    width: pipeW,
+                    height : pipeH,
+                    color : color
+                },{//Objeto esclavo :c
+                    pos : position,
+                    width: pipeW - pipeL,
+                    height : pipeH,
+                    color : 'black'
+                }
+            ]
+        )
+    }
+
+    var rectConf = function(color,position){
+        return (
+            [
+                {//Objeto maestro
+                    pos : position,
+                    width: rectW,
+                    height : rectH,
+                    color : color
+                },{
+                    pos : position,
+                    width: rectW - rectL,
+                    height : rectH - rectL,
+                    color : 'black'
+                }
+            ]
+        )
+    }
+
+    var ballConf = function(text,color,position){
+        return (
+            [
+                {
+                    pos : position,
+                    radius : ballR,
+                    color : color
+                }
+            ]
+        )
+    }
+
+    //Creacion de animacion
+    var Box = function(app,settings){
+        var increment = 80;
+
+        app.set({color : 'black'})
+
+        //Creacion de caja Tiempo en CPU
+        rectConf('white',[650,300]).forEach(function(component){
+            console.log(component);
+            app.add( new iio.Quad(component))
+        })
+
+        //Creacion de tuberia Roja : Cola de preparados
+        pipeConf('red',[50,50]).forEach(function(component){
+            app.add( new iio.Quad(component));
+        })
+
+        //Cola de preparados
+        pipeConf('blue',[1200,50]).forEach(function(component){
+            app.add( new iio.Quad(component));
+        })
+
+    }
+
+    // start the app fullscreen
+    iio.start( Box );
+
     //Handlers
-    document.getElementById('button-start').addEventListener('click',changeColor)
-    document.getElementById('button-stop').addEventListener('click',changeColor)
+    $('#button-start').click(changeColor)
+    $('#button-stop').click(changeColor)
+
     //Botones de Algoritmos
-    document.getElementById('option_1').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_2').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_3').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_4').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_5').addEventListener('click',selectAlgoritm)
-    document.getElementById('option_6').addEventListener('click',selectAlgoritm)
+    $('#option_1').click(selectAlgoritm)
+    $('#option_2').click(selectAlgoritm)
+    $('#option_3').click(selectAlgoritm)
+    $('#option_4').click(selectAlgoritm)
+    $('#option_5').click(selectAlgoritm)
+    $('#option_6').click(selectAlgoritm)
 }

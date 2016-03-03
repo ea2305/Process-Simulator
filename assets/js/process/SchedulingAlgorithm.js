@@ -19,15 +19,15 @@ function SchedulingAlgorithm(){
   };
 
   SchedulingAlgorithm.prototype.run = function(){
-    console.log("El peso de q0 es : " + this.q0.queue.length);
-    console.log("El peso de q1 es : " + this.q1.queue.length);
-    console.log("El peso de q2 es : " + this.q2.queue.length);
-    console.log("El peso de q3 es : " + this.q3.queue.length);
-    console.log("El peso de q4 es : " + this.q4.queue.length);
+    // console.log("El peso de q0 es : " + this.q0.queue.length);
+    // console.log("El peso de q1 es : " + this.q1.queue.length);
+    // console.log("El peso de q2 es : " + this.q2.queue.length);
+    // console.log("El peso de q3 es : " + this.q3.queue.length);
+    // console.log("El peso de q4 es : " + this.q4.queue.length);
+
     console.log(this.isMultilevel);
 
     if(this.pcb === undefined) this.pcb = this.queue.shift();
-    console.log(this.pcb);
     if(this.isMultilevel) this.multilevel();
     else if(this.isExpulsive) this.expulsive();
     else this.notExpulsive();

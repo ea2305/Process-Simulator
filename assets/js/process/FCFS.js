@@ -15,6 +15,7 @@ function FCFS(){
 }
   FCFS.prototype.start = function(){
     //Se define a la cola de los procesos como nuestra cola del algoritmo
+
     this.process.queue = this.queue;
     //De la misma manera se defina a la cola del planificador como la cola de los procesos
     this.fcfs.queue = this.process.queue;
@@ -24,4 +25,5 @@ function FCFS(){
     this.process.start();
     //Se inicializa el planificador para despachar los procesos
     this.fcfs.start();
+    this.fcfs.complete;
   };

@@ -26,27 +26,27 @@ Model.prototype.exec = function(){
         case 1:
         console.log(" Va a cargar FSFC");
 
-            A = new FCFS(this.option);
+            A = new FCFS();
             break;
         case 2:
         console.log(" Va a cargar SJF");
 
-            A = new SJF(this.option);
+            A = new SJF();
             break;
         case 3:
         console.log(" Va a cargar SRTF");
 
-            A = new SRTF(this.option);
+            A = new SRTF();
             break;
         case 4:
         console.log(" Va a cargar RR");
 
-            A = new RR(this.option);
+            A = new RR();
             break;
         case 5:
         console.log(" Va a cargar Pryority");
 
-            A = new Priority(this.option);
+            A = new Priority();
             break;
         case 6:
         console.log(" Va a cargar multilevel");
@@ -54,8 +54,8 @@ Model.prototype.exec = function(){
             break;
         default:
           console.log("Esta cargando el default");
-            A = new FCFS(this);
+            A = new FCFS();
     }
     //Lanzamos la el algoritmo
-    A.start()
+     A.start();
 }

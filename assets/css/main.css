@@ -4,6 +4,21 @@ body{
     margin: 0px;
 }
 
+#stathics{
+  border: 3px solid red;
+  color: white;
+  position: absolute;
+  z-index: 1000;
+  left: 200px;
+  top: 100px;
+  opacity: 5px;
+}
+
+#datos{
+  text-align: center;
+  border: 1px solid green;
+}
+
 button{
     /*Basic rules*/
     width: 15vw;

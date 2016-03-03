@@ -2,6 +2,13 @@ function Process() {
   this.queue = undefined;
   this.id = 0;
   this.firstName = "Process";
+  this.isMultilevel = false;
+  this.q0 = undefined;
+  this.q1 = undefined;
+  this.q2 = undefined;
+  this.q3 = undefined;
+  this.q4 = undefined;
+  this.pcb=undefined;
 }
   Process.prototype.start = function(){
     var threadProcess = setInterval(() => {
@@ -12,6 +19,32 @@ function Process() {
     if (this.isProcess()){
         this.queue.push(this.getNewPCB(this.firstName + this.id));
         this.id = this.id + 1;
+        if(this.isMultilevel){
+          this.pcb = this.queue.shift();
+          switch (this.pcb.priority) {
+            case 0:
+            console.log("Insertando proceso en la cola 0");
+              this.q0.push(this.pcb);
+              break;
+            case 1:
+            console.log("Insertando proceso en la cola 1");
+              this.q1.push(this.pcb);
+              break;
+            case 2:
+            console.log("Insertando proceso en la cola 2");
+              this.q2.push(this.pcb);
+              break;
+            case 3:
+            console.log("Insertando proceso en la cola 3");
+              this.q3.push(this.pcb);
+              break;
+            case 4:
+            console.log("Insertando proceso en la cola 4");
+              this.q4.push(this.pcb);
+              break;
+            default:
+          }
+      }
     }
   };
   Process.prototype.isProcess = function() {

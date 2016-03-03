@@ -22,26 +22,38 @@ Model.prototype.exec = function(){
     //Inicio de la simulacion
 
     //Seleccion del algoritmo
-    switch (this.option) {
+        switch (this.option) {
         case 1:
-            A = new FCFS(this);
+        console.log(" Va a cargar FSFC");
+
+            A = new FCFS(this.option);
             break;
         case 2:
-            A = new SJF(this);
+        console.log(" Va a cargar SJF");
+
+            A = new SJF(this.option);
             break;
         case 3:
-            A = new SRTF(this);
+        console.log(" Va a cargar SRTF");
+
+            A = new SRTF(this.option);
             break;
         case 4:
-            A = new RR(this);
+        console.log(" Va a cargar RR");
+
+            A = new RR(this.option);
             break;
         case 5:
-            A = new Priority(this);
+        console.log(" Va a cargar Pryority");
+
+            A = new Priority(this.option);
             break;
         case 6:
-            //A = new MultiLevel(this);
+        console.log(" Va a cargar multilevel");
+            A = new Multilevel();
             break;
         default:
+          console.log("Esta cargando el default");
             A = new FCFS(this);
     }
     //Lanzamos la el algoritmo

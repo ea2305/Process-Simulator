@@ -13,11 +13,11 @@ Controller.prototype.areModel = function(){
 }
 
 Controller.prototype.selectMode = function(mode){
-    mode = mode || 1
-    this.model.setOption(mode); //Seleccionamos el tipo de algoritmo, manual :c
+    //mode = mode || 1
+    this.model.setOption(6); //Seleccionamos el tipo de algoritmo, manual :c
 }
 
 Controller.prototype.startAll = function() {
-    console.log(this.model);
+
     this.model.exec(); // Ejecucion de algoritmo seleccionado
 }

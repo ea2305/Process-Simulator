@@ -27,3 +27,8 @@ function FCFS(){
     this.fcfs.start();
     this.fcfs.complete;
   };
+
+  FCFS.prototype.stop = function(){
+      this.process.stop();
+      this.fcfs.stop();
+  }

@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title>Simulator Process</title>
         <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./assets/css/interface.css">
         <script src="./assets/js/kernel/PCB.js" charset="utf-8"></script>
         <script src="./assets/js/jquery-2.2.1.min.js" charset="utf-8"></script>
         <script src="./assets/js/kernel/Process.js" charset="utf-8"></script>
@@ -31,7 +32,23 @@
     <body>
         <button id="button-start" type="Start" name="start">Start</button>
         <button id="button-stop" type="Stop" name="stop">Stop</button>
+        <!-- base de la simulacion -->
+        <article class="scene">
+            <div class="pipe red"></div>
+            <div class="central-processor">
+                <div id="selector"></div>
+                <div id="worker-0"></div>
+                <div id="worker-1"></div>
+                <div id="worker-2"></div>
+                <div id="worker-3"></div>
+            </div>
+            <div class="pipe blue"></div>
+
+        </article>
+
         <section id="options">
+
+            <!-- Botones para aplicacion-->
             <button id="option_1" class="option" type="FCFS" name="start">FCFS</button>
             <button id="option_2" class="option" type="SJF" name="start">SJF</button>
             <button id="option_3" class="option" type="SRTF" name="start">SRTF</button>
@@ -42,7 +59,6 @@
 
         <section id="stathics">
           <table id="datos">
-            
           </table>
         </section>
     </body>

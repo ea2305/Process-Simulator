@@ -13,3 +13,8 @@ function RR(){
     this.process.start();
     this.rr.start();
   };
+
+  RR.prototype.stop = function(){
+      this.process.stop();
+      this.rr.stop();
+  }

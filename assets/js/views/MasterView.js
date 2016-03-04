@@ -2,6 +2,10 @@
 window.onload = () => {
 
     //iniciamos el controlador
+    $("#stathics").click(function() {
+      $("#stathics").hide();
+    });
+
     myController = new Controller(this);
     //Estado del boton
     var btn_state = null;
@@ -18,7 +22,9 @@ window.onload = () => {
             myController.startAll();
             console.log(myController.model.method.complete);
         } else {
+            $("#stathics").show();
             stopSimulation();
+            myController.stopAll();
         }
     }
 
@@ -49,20 +55,20 @@ window.onload = () => {
     function stopSimulation() {
       var data =   "<thead><tr><td>Proceso #</td><td>Tiempo de llegada</td>"+
                   "<td>Tiempo requerido</td><td>Tiempo en espera</td><td>Tiempo de Respuesta</td>"+
-                  "<td>Tiempo de penalización</td></tr></thead>";
+                  "<td>Tiempo de penalización</td><td>Prioridad</td></tr></thead>";
         var sumaprocesos=0;
         data+="<tbody>";
-
-        this.myController.model.method.complete.queue.forEach(function(entry) {
-            
-        });
 
         this.myController.model.method.complete.queue.forEach(function(entry) {
             data += "<tr><td>"+entry.name+"</td>";
             data += "<td>"+(sumaprocesos-entry.waitTime)+"</td>";
             sumaprocesos+=entry.workingTime;
             data += "<td>"+entry.workingTime+"</td>";
-            data += "<td>"+entry.waitTime+"</td></tr>";
+            data += "<td>"+entry.waitTime+"</td>";
+            data += "<td>"+(entry.waitTime+entry.workingTime)+"</td>";
+            data += "<td>"+(entry.waitTime+entry.workingTime)/(entry.workingTime)+"</td>";
+            data += "<td>"+entry.priority+"</td></tr>";
+
         });
         data+="</tbody>";
 

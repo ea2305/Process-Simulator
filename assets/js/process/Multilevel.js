@@ -8,7 +8,7 @@ function Multilevel(){
 
   this.process = new Process();
   this.complete = new Queue();
-  this.multilevel=new SchedulingAlgorithm();
+  this.multilevel=new SchedulingAlgorithm(this);
   this.queue = new Queue();
   this.q0 = new Queue();
   this.q1 = new Queue();

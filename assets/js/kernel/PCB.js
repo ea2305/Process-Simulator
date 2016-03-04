@@ -4,6 +4,7 @@ function PCB(name, priority, ticks) {
   this.ticks = ticks;
   this.waitTime = 0;
   this.workingTime = 0;
+  this.tiempollegada = 0;
 }
   PCB.prototype.wait = function(){
     this.waitTime++;

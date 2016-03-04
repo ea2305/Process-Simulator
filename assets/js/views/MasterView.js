@@ -59,8 +59,11 @@ window.onload = () => {
 
     function selectAlgoritm(event){
         console.log(event);
+        $('.option').css("color","white")
+        $('#' + event.target.id).css("color","red")
         //Obtenemos padre del evento, y obtenemos el indice del algoritmo
         var option = event.target.id.split("").pop()
+
         //Enviamos valores
         myController.selectMode(option)
     }
@@ -127,6 +130,7 @@ window.onload = () => {
     }
 
     function stopSimulation() {
+
       var promtiempollegada=0;
       var promtiemporequerido=0;
       var promtiempoespera=0;
@@ -137,20 +141,19 @@ window.onload = () => {
       var data =   "<thead><tr><td>Proceso #</td><td>Tiempo de llegada</td>"+
                   "<td>Tiempo requerido</td><td>Tiempo en espera</td><td>Tiempo de Respuesta</td>"+
                   "<td>Tiempo de penalización</td><td>Prioridad</td></tr></thead>";
-        var sumaprocesos=0;
+
         data+="<tbody>";
 
         completado.forEach(function(entry) {
             data += "<tr><td>"+entry.name+"</td>";
-            data += "<td>"+(sumaprocesos-entry.waitTime)+"</td>";
-            promtiempollegada += (sumaprocesos-entry.waitTime);
-            sumaprocesos+=entry.workingTime;
+            data += "<td>"+entry.tiempollegada+"</td>";
+
             data += "<td>"+entry.workingTime+"</td>";
             data += "<td>"+entry.waitTime+"</td>";
             data += "<td>"+(entry.waitTime+entry.workingTime)+"</td>";
             data += "<td>"+(entry.waitTime+entry.workingTime)/(entry.workingTime)+"</td>";
             data += "<td>"+entry.priority+"</td></tr>";
-            promtiempollegada += (sumaprocesos-entry.waitTime);
+            promtiempollegada +=  entry.tiempollegada;
             promtiemporequerido += entry.workingTime;
             promtiempoespera += entry.waitTime;
             promtiemporespuesta+=(entry.waitTime+entry.workingTime);
@@ -159,7 +162,7 @@ window.onload = () => {
         var i = completado.length;
         data += "<tr>"+
           "<td>Datos promedios</td>"+
-          "<td>"+(promtiemporespuesta/i)+"</td>"+
+          "<td> :v </td>"+
           "<td>"+(promtiemporequerido/i)+"</td>"+
           "<td>"+(promtiempoespera/i)+"</td>"+
           "<td>"+(promtiemporespuesta/i)+"</td>"+

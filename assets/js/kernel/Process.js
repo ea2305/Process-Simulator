@@ -10,6 +10,7 @@ function Process() {
   this.q3 = undefined;
   this.q4 = undefined;
   this.pcb=undefined;
+  this.numeroTick=0;
 }
   // Detiene todos los procesos
   Process.prototype.stop = function(){
@@ -19,7 +20,7 @@ function Process() {
   Process.prototype.start = function(){
     this.threadProcess = setInterval(() => {
       this.run();
-    },5000);
+    },2000);
   };
   Process.prototype.run = function(){
     if (this.isProcess()){
@@ -69,5 +70,8 @@ function Process() {
   Process.prototype.getNewPCB = function(name) {
     var priority = this.getPriority();
     var ticks = 1 + parseInt(Math.random() * 10);
-    return new PCB(name, priority, ticks);
+    var pcb = new PCB(name, priority, ticks);
+    pcb.tiempollegada = this.numeroTick;
+    this.numeroTick++;
+    return pcb;
   };

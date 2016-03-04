@@ -34,18 +34,27 @@
         <button id="button-stop" type="Stop" name="stop">Stop</button>
         <!-- base de la simulacion -->
         <article class="scene">
-            <div class="pipe red"></div>
+            <div class="pipe pull-left">
+                <div class="wall red"></div>
+                <div class="conduct"></div>
+                <div class="wall red"></div>
+            </div>
             <div class="central-processor">
                 <div id="selector"></div>
-                <div id="worker-0"></div>
-                <div id="worker-1"></div>
-                <div id="worker-2"></div>
-                <div id="worker-3"></div>
+                <div id="worker-0" class="worker"></div>
+                <div id="worker-1" class="worker"></div>
+                <div id="worker-2" class="worker"></div>
+                <div id="worker-3" class="worker"></div>
+                <div id="worker-4" class="worker"></div>
             </div>
-            <div class="pipe blue"></div>
+            <div class="pipe pull-right">
+                <div class="wall blue"></div>
+                <div class="conduct"></div>
+                <div class="wall blue"></div>
+            </div>
 
         </article>
-        
+
         <section id="options">
 
             <!-- Botones para aplicacion-->

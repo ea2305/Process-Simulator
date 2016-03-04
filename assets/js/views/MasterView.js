@@ -3,8 +3,12 @@ window.onload = () => {
 
     //iniciamos el controlador
     myController = new Controller;
+
     //Estado del boton
     var btn_state = null;
+
+    //Contenedor de timer
+    var animation = null;
 
     //Cambia el color del boton al ser seleccionado
     var changeColor = (e)=>{
@@ -14,11 +18,18 @@ window.onload = () => {
         btn_state = false;//Reiniciamos el valor
         btn_state = (element == "button-start") ? true : false; //Seteamos valores
         setColor(element,btn_state) //Colocamos estado de seleccionado
-        if (btn_state) {
+
+        if (btn_state) { //Verificamos el estado del boton
             myController.startAll();
-            console.log(myController.model.method.complete);
+
+            //lanzamos el mini loop de animacion
+             animation = setInterval(()=>{
+                animationScene();
+            },5000);
+
         } else {
             myController.stopAll();
+            clearInterval(animation);
         }
     }
 
@@ -44,6 +55,65 @@ window.onload = () => {
         var option = event.target.id.split("").pop()
         //Enviamos valores
         myController.selectMode(option)
+    }
+
+    function animationScene(){
+        if(myController != null){
+
+            //Limpiamos scene
+            $('.ball').remove()
+
+            var complete = myController.model.method.complete.queue;
+
+            var prepare = myController.model.method.queue.queue;
+
+            var current = whatMethod()
+            if(current != undefined) {
+                $('.scene').append(getBalls(current.name,true));
+                $('#' + current.name).addClass('inW-2')
+            }
+
+            prepare.forEach((node,index)=>{
+                console.log("Agregamos :" + node.name);
+                $('.scene').append(getBalls(node.name,true,index))
+            })
+
+            complete.forEach((node,index)=>{
+                console.log("Agregamos :" + node.name);
+                $('.scene').append(getBalls(node.name,false,index))
+            })
+
+        }
+    }
+
+    //Obtencion de formato de pelota
+    function getBalls(name,position,index){
+        console.log(index);
+        var increment = index * 20
+        if (position){
+            return "<div id='"+ name +"' class='ball white pull-left' style='top : " + increment +"px;'>" + name + "</div>";
+        }else{
+            return "<div id='"+ name +"' class='ball red pull-right' style='top : " + increment +"px;'>" + name + "</div>";
+        }
+    }
+
+    function whatMethod(){
+        switch (myController.model.option) {
+            case '1':
+                return myController.model.method.fcfs.pcb
+            case '2':
+                return myController.model.method.sjf.pcb
+            case '3':
+                return myController.model.method.srtf.pcb
+            case '4':
+                return myController.model.method.rr.pcb
+            case '5':
+                return myController.model.method.priority.pcb
+            case '6':
+                return myController.model.method.multilevel.pcb
+            default:
+                return null;
+        }
     }
 
     //Handlers

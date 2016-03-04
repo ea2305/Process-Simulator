@@ -2,7 +2,7 @@ function Process() {
   this.threadProcess = null;
   this.queue = undefined;
   this.id = 0;
-  this.firstName = "Process";
+  this.firstName = "P-";
   this.isMultilevel = false;
   this.q0 = undefined;
   this.q1 = undefined;
@@ -19,7 +19,6 @@ function Process() {
   Process.prototype.start = function(){
     this.threadProcess = setInterval(() => {
       this.run();
-      console.log('existo :Vvvvv')
     },5000);
   };
   Process.prototype.run = function(){

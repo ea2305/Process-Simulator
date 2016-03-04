@@ -1,4 +1,5 @@
 function Process() {
+  this.threadProcess = null;
   this.queue = undefined;
   this.id = 0;
   this.firstName = "Process";
@@ -10,9 +11,15 @@ function Process() {
   this.q4 = undefined;
   this.pcb=undefined;
 }
+  // Detiene todos los procesos
+  Process.prototype.stop = function(){
+      //Limpiamos el timer
+      clearInterval(this.threadProcess);
+  }
   Process.prototype.start = function(){
-    var threadProcess = setInterval(() => {
+    this.threadProcess = setInterval(() => {
       this.run();
+      console.log('existo :Vvvvv')
     },5000);
   };
   Process.prototype.run = function(){

@@ -12,3 +12,8 @@ function SJF(){
     this.process.start();
     this.sjf.start();
   };
+
+  SJF.prototype.stop = function(){
+      this.process.stop();
+      this.sjf.stop();
+  }

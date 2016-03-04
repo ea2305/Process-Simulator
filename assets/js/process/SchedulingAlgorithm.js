@@ -1,4 +1,5 @@
 function SchedulingAlgorithm(){
+    this.threadPriority = null;
     this.queue = undefined;
     this.complete = undefined;
     this.isExpulsive = false;
@@ -13,9 +14,13 @@ function SchedulingAlgorithm(){
     this.tick = 0;
 }
   SchedulingAlgorithm.prototype.start = function(){
-    var threadPriority = setInterval(() => {
+    this.threadPriority = setInterval(() => {
       this.run();
     },5000);
+  };
+
+  SchedulingAlgorithm.prototype.stop = function(){
+      clearInterval(this.threadPriority);
   };
 
   SchedulingAlgorithm.prototype.run = function(){

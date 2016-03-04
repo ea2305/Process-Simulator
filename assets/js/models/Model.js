@@ -52,9 +52,13 @@ Model.prototype.exec = function(){
             break;
         default:
           console.log("Esta cargando el default");
-            A = new FCFS();
+            this.method = new FCFS();
     }
     //Lanzamos la el algoritmo
     //Lanzamos la el algoritmo
     this.method.start()
+}
+
+Model.prototype.stop = function(){
+    this.method.stop();
 }

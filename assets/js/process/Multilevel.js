@@ -39,3 +39,8 @@ Multilevel.prototype.start = function(){
     this.process.start();
     this.multilevel.start();
 }
+
+Multilevel.prototype.stop = function(){
+    this.process.stop();
+    this.multilevel.stop();
+}

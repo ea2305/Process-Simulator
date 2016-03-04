@@ -18,7 +18,7 @@ window.onload = () => {
             myController.startAll();
             console.log(myController.model.method.complete);
         } else {
-            //stopSimulation();
+            myController.stopAll();
         }
     }
 

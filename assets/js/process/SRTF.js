@@ -13,3 +13,8 @@ function SRTF(){
     this.process.start();
     this.srtf.start();
   };
+
+  SRTF.prototype.stop = function(){
+      this.process.stop();
+      this.srtf.stop();
+  }

@@ -17,3 +17,7 @@ Controller.prototype.selectMode = function(mode){
 Controller.prototype.startAll = function() {
     this.model.exec(); // Ejecucion de algoritmo seleccionado
 }
+
+Controller.prototype.stopAll = function(){
+    this.model.stop();
+}

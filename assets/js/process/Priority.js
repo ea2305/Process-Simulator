@@ -12,3 +12,8 @@ function Priority(){
     this.process.start();
     this.priority.start();
   };
+
+  Priority.prototype.stop = function(){
+      this.process.stop();
+      this.priority.stop();
+  }

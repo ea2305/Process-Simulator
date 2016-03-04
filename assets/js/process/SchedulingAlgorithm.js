@@ -16,7 +16,7 @@ function SchedulingAlgorithm(){
   SchedulingAlgorithm.prototype.start = function(){
     this.threadPriority = setInterval(() => {
       this.run();
-    },5000);
+    },1000);
   };
 
   SchedulingAlgorithm.prototype.stop = function(){

@@ -30,7 +30,8 @@ window.onload = () => {
             //lanzamos el mini loop de animacion
              animation = setInterval(()=>{
                 animationScene();
-            },5000);
+            },myController.model.Time);
+
 
         } else {
             $("#stathics").show();
@@ -96,7 +97,6 @@ window.onload = () => {
 
     //Obtencion de formato de pelota
     function getBalls(name,position,index){
-        console.log(index);
         var increment = index * 20
         if (position == 0){
             return "<div id='"+ name +"' class='ball white pull-left-ball' style='top : " + increment +"px;'><p>" + name + "</p></div>";
@@ -127,23 +127,45 @@ window.onload = () => {
     }
 
     function stopSimulation() {
+      var promtiempollegada=0;
+      var promtiemporequerido=0;
+      var promtiempoespera=0;
+      var promtiemporespuesta=0;
+      var promtiempopen=0;
+      var completado = this.myController.model.method.complete.queue;
+
       var data =   "<thead><tr><td>Proceso #</td><td>Tiempo de llegada</td>"+
                   "<td>Tiempo requerido</td><td>Tiempo en espera</td><td>Tiempo de Respuesta</td>"+
                   "<td>Tiempo de penalización</td><td>Prioridad</td></tr></thead>";
         var sumaprocesos=0;
         data+="<tbody>";
 
-        this.myController.model.method.complete.queue.forEach(function(entry) {
+        completado.forEach(function(entry) {
             data += "<tr><td>"+entry.name+"</td>";
             data += "<td>"+(sumaprocesos-entry.waitTime)+"</td>";
+            promtiempollegada += (sumaprocesos-entry.waitTime);
             sumaprocesos+=entry.workingTime;
             data += "<td>"+entry.workingTime+"</td>";
             data += "<td>"+entry.waitTime+"</td>";
             data += "<td>"+(entry.waitTime+entry.workingTime)+"</td>";
             data += "<td>"+(entry.waitTime+entry.workingTime)/(entry.workingTime)+"</td>";
             data += "<td>"+entry.priority+"</td></tr>";
-
+            promtiempollegada += (sumaprocesos-entry.waitTime);
+            promtiemporequerido += entry.workingTime;
+            promtiempoespera += entry.waitTime;
+            promtiemporespuesta+=(entry.waitTime+entry.workingTime);
+            promtiempopen+=(entry.waitTime+entry.workingTime)/(entry.workingTime);
         });
+        var i = completado.length;
+        data += "<tr>"+
+          "<td>Datos promedios</td>"+
+          "<td>"+(promtiemporespuesta/i)+"</td>"+
+          "<td>"+(promtiemporequerido/i)+"</td>"+
+          "<td>"+(promtiempoespera/i)+"</td>"+
+          "<td>"+(promtiemporespuesta/i)+"</td>"+
+          "<td>"+(promtiempopen/i)+"</td>"+
+          "<td>:v</td>"+
+        "</tr>";
         data+="</tbody>";
 
       document.getElementById("datos").innerHTML = data

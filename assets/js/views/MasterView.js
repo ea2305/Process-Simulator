@@ -2,7 +2,12 @@
 window.onload = () => {
 
     //iniciamos el controlador
-    myController = new Controller;
+
+    $("#stathics").click(function() {
+      $("#stathics").hide();
+    });
+
+    myController = new Controller(this);
 
     //Estado del boton
     var btn_state = null;
@@ -28,6 +33,8 @@ window.onload = () => {
             },5000);
 
         } else {
+            $("#stathics").show();
+            stopSimulation();
             myController.stopAll();
             clearInterval(animation);
         }
@@ -63,24 +70,25 @@ window.onload = () => {
             //Limpiamos scene
             $('.ball').remove()
 
-            var complete = myController.model.method.complete.queue;
+            var complete = []
+            myController.model.method.complete.queue.forEach((e)=>{complete.push(e)})
 
-            var prepare = myController.model.method.queue.queue;
+
+            var prepare = []
+            myController.model.method.queue.queue.forEach((e)=>{prepare.push(e)})
 
             var current = whatMethod()
             if(current != undefined) {
-                $('.scene').append(getBalls(current.name,true));
+                $('.scene').append(getBalls(current.name,2));
                 $('#' + current.name).addClass('inW-2')
             }
 
-            prepare.forEach((node,index)=>{
-                console.log("Agregamos :" + node.name);
-                $('.scene').append(getBalls(node.name,true,index))
+            prepare.reverse().forEach((node,index)=>{
+                $('.scene').append(getBalls(node.name,0,index))
             })
 
             complete.forEach((node,index)=>{
-                console.log("Agregamos :" + node.name);
-                $('.scene').append(getBalls(node.name,false,index))
+                $('.scene').append(getBalls(node.name,1,index))
             })
 
         }
@@ -90,10 +98,12 @@ window.onload = () => {
     function getBalls(name,position,index){
         console.log(index);
         var increment = index * 20
-        if (position){
-            return "<div id='"+ name +"' class='ball white pull-left' style='top : " + increment +"px;'>" + name + "</div>";
+        if (position == 0){
+            return "<div id='"+ name +"' class='ball white pull-left-ball' style='top : " + increment +"px;'><p>" + name + "</p></div>";
+        }else if(position == 1){
+            return "<div id='"+ name +"' class='ball red pull-right-ball' style='top : " + increment +"px;'><p>" + name + "</p></div>";
         }else{
-            return "<div id='"+ name +"' class='ball red pull-right' style='top : " + increment +"px;'>" + name + "</div>";
+            return "<div id='"+ name +"' class='ball red' style='top : " + increment +"px;'><p>" + name + "</p></div>";
         }
     }
 
@@ -114,6 +124,30 @@ window.onload = () => {
             default:
                 return null;
         }
+    }
+
+    function stopSimulation() {
+      var data =   "<thead><tr><td>Proceso #</td><td>Tiempo de llegada</td>"+
+                  "<td>Tiempo requerido</td><td>Tiempo en espera</td><td>Tiempo de Respuesta</td>"+
+                  "<td>Tiempo de penalización</td><td>Prioridad</td></tr></thead>";
+        var sumaprocesos=0;
+        data+="<tbody>";
+
+        this.myController.model.method.complete.queue.forEach(function(entry) {
+            data += "<tr><td>"+entry.name+"</td>";
+            data += "<td>"+(sumaprocesos-entry.waitTime)+"</td>";
+            sumaprocesos+=entry.workingTime;
+            data += "<td>"+entry.workingTime+"</td>";
+            data += "<td>"+entry.waitTime+"</td>";
+            data += "<td>"+(entry.waitTime+entry.workingTime)+"</td>";
+            data += "<td>"+(entry.waitTime+entry.workingTime)/(entry.workingTime)+"</td>";
+            data += "<td>"+entry.priority+"</td></tr>";
+
+        });
+        data+="</tbody>";
+
+      document.getElementById("datos").innerHTML = data
+      $('#stathics').addClass('modal')
     }
 
     //Handlers

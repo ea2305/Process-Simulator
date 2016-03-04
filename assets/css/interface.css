@@ -39,6 +39,16 @@
     right: 0px;
 }
 
+.pull-left-ball{
+    top: 0px;
+    left: 3%;
+}
+
+.pull-right-ball{
+    top: 0px;
+    right: 3%;
+}
+
 /*Activity*/
 .central-processor{
     position: absolute;
@@ -57,6 +67,7 @@
 
 /*Ball 'n process'*/
 .ball{
+    transition: all .3s;
     width: 4rem;
     height: 4rem;
     position: absolute !important;
@@ -64,11 +75,21 @@
     border: 1px solid white;
     text-align: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .ball:hover{
+    /*
     transform: translate(200px,200px);
     transition-duration: 5s;
+    */
+    transition: all .3s;
+    background: rgba(255, 0, 0, 0.5);
+    width: 5rem;
+    height: 5rem;
+    z-index: 110 !important;
+    color: white;
+
 }
 .inW-0{
     left: 48%;

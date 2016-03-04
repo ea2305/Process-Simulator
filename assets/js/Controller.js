@@ -1,5 +1,5 @@
 function Controller(){
-    this.model = new Model();
+    this.model = new Model(this);
 }
 
 Controller.prototype.areModel = function(){

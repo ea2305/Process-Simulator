@@ -5,13 +5,13 @@
 */
 function FCFS(){
   //Instancia de una cola?
-    this.queue = new Queue();
+    this.queue = new Queue(this);
   //Instancia de cola de Procesos
-    this.process = new Process();
+    this.process = new Process(this);
     //Instancia de cola de completados
-    this.complete = new Queue();
+    this.complete = new Queue(this);
     //Instancia del planificador
-    this.fcfs = new SchedulingAlgorithm();
+    this.fcfs = new SchedulingAlgorithm(this);
 }
   FCFS.prototype.start = function(){
     //Se define a la cola de los procesos como nuestra cola del algoritmo

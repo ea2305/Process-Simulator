@@ -23,9 +23,9 @@ Model.prototype.getTime = function () {
 }
 
 Model.prototype.exec = function(){
-    //Inicio de la simulacion
-    //Seleccion del algoritmo
+
         switch (this.option) {
+
         case '1':
             console.log(" Va a cargar FSFC");
             this.method = new FCFS(this);
@@ -51,9 +51,10 @@ Model.prototype.exec = function(){
             this.method = new Multilevel(this);
             break;
         default:
-            console.log("Esta cargando el default");
-            this.method = new FCFS(this);
+          console.log("Esta cargando el default");
+            A = new FCFS();
     }
+    //Lanzamos la el algoritmo
     //Lanzamos la el algoritmo
     this.method.start()
 }

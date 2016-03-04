@@ -16,7 +16,7 @@ window.onload = () => {
         setColor(element,btn_state) //Colocamos estado de seleccionado
         if (btn_state) {
             myController.startAll();
-            console.log(myController.model.method);
+            console.log(myController.model.method.complete);
         } else {
             //stopSimulation();
         }
